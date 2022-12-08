@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""lockboxe"""
 
 def canUnlockAll(boxes);
 boxes = [[0], [n-1]]
