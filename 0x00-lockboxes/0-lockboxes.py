@@ -1,16 +1,12 @@
 #!/usr/bin/python3
-"""Dlockboxes"""
-
-
+"""lockboxes"""
 def canUnlockAll(boxes):
-    """There can be keys that do not have boxes."""
-    keys = [0]
-
-    for key in keys:
-        for i in boxes[key]:
-            if i not in keys and i < len(boxes):
-                keys.append(i)
-    for i in range(len(boxes)):
-        if i not in keys:
-            return False
-    return True
+    boxOne = [0]
+    for key in boxOne:
+        for keyBox in boxes[key]:
+            if keyBox not in boxOne:
+                if keyBox < len(boxes):
+                    boxOne.append(keyBox)
+    if len(boxOne) == len(boxes):
+        return True
+    return False
