@@ -3,7 +3,7 @@
 
 
 def canUnlockAll(boxes):
-    """Return True if all boxes can be opened else return False."""
+    """There can be keys that do not have boxes."""
     keys = [0]
 
     for key in keys:
@@ -14,4 +14,3 @@ def canUnlockAll(boxes):
         if i not in keys:
             return False
     return True
-    
