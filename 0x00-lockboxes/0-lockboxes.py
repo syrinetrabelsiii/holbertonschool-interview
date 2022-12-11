@@ -1,15 +1,17 @@
 #!/usr/bin/python3
-"""lockboxes."""
+"""Determine if all boxes can be opened."""
+
 
 def canUnlockAll(boxes):
-    """There can be keys that do not have boxes."""
+    """Return True if all boxes can be opened else return False."""
     keys = [0]
 
     for key in keys:
-        for i in boxes[key]:
-            if i not in keys and i < len(boxes):
-                keys.append(i)
+        for idx in boxes[key]:
+            if idx not in keys and idx < len(boxes):
+                keys.append(idx)
     for i in range(len(boxes)):
         if i not in keys:
             return False
     return True
+    
