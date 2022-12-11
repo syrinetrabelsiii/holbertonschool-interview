@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""lockboxes"""
+"""lockboxes."""
 def canUnlockAll(boxes):
     boxOne = [0]
     for key in boxOne:
