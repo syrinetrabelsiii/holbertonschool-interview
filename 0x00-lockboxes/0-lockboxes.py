@@ -2,6 +2,7 @@
 """lockboxes"""
 
 def canUnlockAll(boxes):
+    """There can be keys that do not have boxes"""
     keys = [0]
 
     for key in keys:
