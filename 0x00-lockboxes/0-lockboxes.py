@@ -1,8 +1,14 @@
 #!/usr/bin/python3
-"""lockboxe"""
+"""lockboxes"""
 
-def canUnlockAll(boxes);
-boxes = [[0], [n-1]]
-key = [0]
-if i in  boxes[key]:
+def canUnlockAll(boxes):
+    keys = [0]
 
+    for key in keys:
+        for i in boxes[key]:
+            if i not in keys and i < len(boxes):
+                keys.append(i)
+    for i in range(len(boxes)):
+        if i not in keys:
+            return False
+    return True
