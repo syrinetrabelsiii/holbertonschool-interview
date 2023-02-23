@@ -56,3 +56,25 @@ void slide_left(int *line, size_t size)
 void slide_right(int *line, size_t size)
 {
 	int prev = 0, i = size - 1, j, curr;
+for (j = size - 1; j >= 0; j--)
+	{
+		curr = line[j];
+		if (!curr)
+			continue;
+		if (!prev)
+			prev = curr;
+		else if (prev == curr)
+		{
+			line[i--] = curr << 1;
+			prev = 0;
+		} else
+		{
+			line[i--] = prev;
+			prev = curr;
+		}
+	}
+	if (prev)
+		line[i--] = prev;
+	while (i >= 0)
+		line[i--] = 0;
+}
