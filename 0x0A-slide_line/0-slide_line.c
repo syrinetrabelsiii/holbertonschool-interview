@@ -48,3 +48,11 @@ void slide_left(int *line, size_t size)
 		line[i++] = 0;
 }
 
+/**
+ * slide_right - slides a line to the right
+ * @line: input array
+ * @size: size of array
+ */
+void slide_right(int *line, size_t size)
+{
+	int prev = 0, i = size - 1, j, curr;
