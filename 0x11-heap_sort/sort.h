@@ -6,7 +6,9 @@
 #include <stdlib.h>
 
 /* FUNCTION PROTOTYPES */
-void heapify(int arr[], int n, int i
+void print_array(const int *array, size_t size);
+void heap_sort(int *array, size_t size);
+void heap_sort_print(int *array, size_t size, int *array_p, size_t size_p);
+void heapify(int *array, size_t size, int i, int *array_p, size_t size_p);
 
-void heap_sort(int arr[], int n)
 #endif
