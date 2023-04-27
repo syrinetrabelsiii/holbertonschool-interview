@@ -1,55 +1,80 @@
 #include "sort.h"
 
-void heapify(int arr[], int n, int i) {
-    int largest = i;
-    int l = 2 * i + 1;
-    int r = 2 * i + 2;
-
-    if (l < n && arr[l] > arr[largest])
-        largest = l;
-
-    if (r < n && arr[r] > arr[largest])
-        largest = r;
-
-    if (largest != i) {
-        int temp = arr[i];
-        arr[i] = arr[largest];
-        arr[largest] = temp;
-
-        printf("%d, %d\n", arr[i], arr[largest]);
-
-        heapify(arr, n, largest);
-    }
+/**
+ * heap_sort - sorts an array of ints in ascending order
+ * using Heap Sort algorithm
+ *
+ * @array: the array of ints to sort
+ * @size: the size of the array to sort
+ *
+ */
+void heap_sort(int *array, size_t size)
+{
+	if (array == NULL || size <= 1)
+		return;
+	heap_sort_print(array, size, array, size);
 }
 
-void heap_sort(int arr[], int n) {
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapify(arr, n, i);
+/**
+ * heap_sort_print - heap sort with full array as parameter for printing
+ *
+ * @array: array to sort
+ * @size: size of array to sort
+ * @array_p: array to print
+ * @size_p: size of array to print
+ *
+ */
+void heap_sort_print(int *array, size_t size, int *array_p, size_t size_p)
+{
+	int i = 0, temp = 0;
 
-    for (int i = n - 1; i > 0; i--) {
-        int temp = arr[0];
-        arr[0] = arr[i];
-        arr[i] = temp;
+	for (i = (size - 1) / 2; i >= 0; i--)
+	{
+		heapify(array, size, i, array_p, size_p);
+	}
+	for (i = (size - 1); i > 0; i--)
+	{
+		temp = array[i];
+		array[i] = array[0];
+		array[0] = temp;
+		array_p[i] = array[i];
+		array_p[0] = array[0];
+		print_array(array_p, size_p);
 
-        printf("%d, %d\n", arr[0], arr[i]);
-
-        heapify(arr, i, 0);
-    }
+		heapify(array, i, 0, array_p, size_p);
+	}
 }
 
-int main() {
-    int arr[] = {12, 11, 13, 5, 6, 7};
-    int n = sizeof(arr) / sizeof(arr[0]);
+/**
+ * heapify - reorders array like nodes swapping in a heap
+ *
+ * @array: the array of ints to sort
+ * @size: the size of the array to sort
+ * @i: current index in array
+ * @array_p: array to print
+ * @size_p: size of array to print
+ *
+ */
+void heapify(int *array, size_t size, int i, int *array_p, size_t size_p)
+{
+	int max = i;
+	int left_child = 2 * i + 1;
+	int right_child = 2 * i + 2;
+	int temp = 0;
 
-    printf("Original array: ");
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
+	if (left_child < (int)size && array[left_child] > array[max])
+		max = left_child;
+	if (right_child < (int)size && array[right_child] > array[max])
+		max = right_child;
+	if (max != i)
+	{
+		temp = array[i];
+		array[i] = array[max];
+		array[max] = temp;
+		array_p[i] = array[i];
+		array_p[max] = array[max];
+		print_array(array_p, size_p);
 
-    heap_sort(arr, n);
-
-    printf("\nSorted array: ");
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-
-    return 0;
+		heapify(array, size, max, array_p, size_p);
+	}
 }
