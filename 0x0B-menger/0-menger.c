@@ -1,32 +1,32 @@
-#incluze "menger.h"
+#include "menger.h"
 
 /**
- * menger - draws a 2d Menger Sponge
- * @level: depth of Menger Sponge to print
+ * menger - Draws a 2D Menger Sponge
+ * @level: Depth of Menger Sponge to print
  * Return: None
  */
 
 void menger(int level)
 {
-	int s, y, depth, dim = 1;
+	int X, Y, d, dim = 1;
 
 	if (level >= 0)
 	{
-		for (s = 0; level > s; s++)
+		for (X = 0; level > X; X++)
 		{
 			dim *= 3;
 		}
 
-		for (s = 0; dim > s; s++)
+		for (X = 0; dim > X; X++)
 		{
-			for (y = 0; dim > y; y++)
+			for (Y = 0; dim > Y; Y++)
 			{
-				for (depth = dim / 3; depth > 0; depth /= 3)
+				for (d = dim / 3; d > 0; d /= 3)
 				{
-					if ((s % (depth * 3)) / depth == 1 && (y % (depth * 3)) / depth == 1)
+					if ((X % (d * 3)) / d == 1 && (Y % (d * 3)) / d == 1)
 						break;
 				}
-				if (depth)
+				if (d)
 				{
 					printf(" ");
 				}
