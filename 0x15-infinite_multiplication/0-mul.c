@@ -1,119 +1,92 @@
+#include "holberton.h"
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "holberton.h"
 
 /**
- * error_exit - Prints "Error" and exits with status 98.
+ * print_result - Prints an array of integers like a unique number
+ * @nums3: Array of integers
+ * @size: Size of the array of integers
  */
-void error_exit(void)
+
+void print_result(int *nums3, int size)
 {
-	print_string("Error\n");
-	exit(98);
+	int i = 0;
+
+	if (!nums3 && !size)
+	{
+		printf("0\n");
+		exit(0);
+	}
+	while (nums3[i] == 0)
+		i++;
+	for (; i < size; i++)
+	{
+		printf("%d", nums3[i]);
+	}
+	printf("\n");
 }
 
 /**
- * is_digit - Checks if a character is a digit.
- * @c: The character to check.
- * Return: 1 if c is a digit, 0 otherwise.
+ * multiply - Multiplies two numbers
+ * @num1: String representation of num1 a large integer
+ * @num2: string representation of num2 a large integer
+ * Return: 1 on success, 0 on failure
  */
-int is_digit(char c)
+
+int multiply(char *num1, char *num2)
 {
-	return (c >= '0' && c <= '9');
-}
+	int i, j;
+	int len1, len2, sum, n1, n2 = 0;
+	int *nums3;
 
-/**
- * multiply_numbers - Multiplies two positive numbers.
- * @num1: The first number as a string.
- * @num2: The second number as a string.
- * Return: The result of the multiplication as a string.
- */
-char *multiply_numbers(char *num1, char *num2)
-{
-	int len1, len2, i, j, k, carry, n1, n2, sum;
-	int *result;
-	char *mul;
-
-	len1 = string_length(num1);
-	len2 = string_length(num2);
-
-	result = malloc(sizeof(int) * (len1 + len2));
-	if (result == NULL)
-		error_exit();
-
-	for (i = 0; i < len1 + len2; i++)
-		result[i] = 0;
-
+	len1 = strlen(num1);
+	len2 = strlen(num2);
+	nums3 = calloc(len1 + len2, sizeof(len1 + len2));
+	if (!nums3)
+		return (0);
 	for (i = len1 - 1; i >= 0; i--)
 	{
-		carry = 0;
 		n1 = num1[i] - '0';
-
 		for (j = len2 - 1; j >= 0; j--)
 		{
 			n2 = num2[j] - '0';
-			sum = (n1 * n2) + result[i + j + 1] + carry;
-
-			carry = sum / 10;
-			result[i + j + 1] = sum % 10;
+			sum = (n1 * n2) + nums3[i + j + 1];
+			nums3[i + j] += sum / 10;
+			nums3[i + j + 1] = sum % 10;
 		}
-
-		if (carry > 0)
-			result[i + j + 1] += carry;
 	}
-
-	k = 0;
-	while (result[k] == 0 && k < len1 + len2 - 1)
-		k++;
-
-	mul = malloc(sizeof(char) * (len1 + len2 - k + 1));
-	if (mul == NULL)
-		error_exit();
-
-	for (i = 0; i < len1 + len2 - k; i++)
-		mul[i] = result[k + i] + '0';
-
-	mul[i] = '\0';
-
-	free(result);
-
-	return mul;
+	print_result(nums3, len1 + len2);
+	free(nums3);
+	return (1);
 }
 
 /**
- * main - Entry point.
- * @argc: The number of command-line arguments.
- * @argv: An array containing the command-line arguments.
- * Return: 0 on success, 98 on error.
+ * main - Entry point: Multiplies two positive numbers
+ * @argc: Number of arguments passed
+ * @argv: Arguments passed
+ * Return: 0 in success, 1 on failure
  */
-int main(int argc, char *argv[])
+
+int main(int argc, char **argv)
 {
-	char *num1, *num2, *result;
+	int i, j = 0;
 
 	if (argc != 3)
-		error_exit();
-
-	num1 = argv[1];
-	num2 = argv[2];
-
-	while (*num1)
 	{
-		if (!is_digit(*num1))
-			error_exit();
-		num1++;
+		printf("Error\n");
+		exit(98);
 	}
-
-	while (*num2)
-	{
-		if (!is_digit(*num2))
-			error_exit();
-		num2++;
-	}
-
-	result = multiply_numbers(argv[1], argv[2]);
-	print_string(result);
-	print_character('\n');
-	free(result);
-
-	return 0;
+	for (i = 1; argv[i]; i++)
+	for (j = 0; argv[i][j]; j++)
+		if (argv[i][j] < '0' || argv[i][j] > '9')
+		{
+			printf("Error\n");
+			exit(98);
+		}
+	if (*argv[1] == '0' || *argv[2] == '0')
+		print_result(NULL, 0);
+	if (!multiply(argv[1], argv[2]))
+		return (1);
+	return (0);
 }
-
