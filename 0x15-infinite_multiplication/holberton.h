@@ -1,6 +1,6 @@
-#ifndef HOLBERTON_H
-#define HOLBERTON_H
+#ifndef _HOLBERTON_H
+#define _HOLBERTON_H
 
-void print_character(char c);
-void print_string(char *str);
-int string_length(char *str);
+int _putchar(char c);
+
+#endif
