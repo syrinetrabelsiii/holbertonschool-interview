@@ -14,20 +14,16 @@ listint_t *find_listint_loop(listint_t *head)
     {
         slow = slow->next;
         fast = fast->next->next;
-
-        if (slow == fast) // Loop detected
+        if (slow == fast)
         {
-            slow = head; // Move one pointer to the head
-
+            slow = head;
             while (slow != fast)
             {
                 slow = slow->next;
                 fast = fast->next;
             }
-
-            return slow; // Both pointers meet at the start of the loop
+            return slow;
         }
     }
-
-    return NULL; // No loop found
+    return NULL;
 }
