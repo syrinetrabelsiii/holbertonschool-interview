@@ -8,7 +8,7 @@ def rain(walls):
     """
     Calculates how many square units of water will be retained after it rains.
     Args:
-        walls: A list of non-negative integers representing the heights of walls.
+        walls: A list of non-negative integers.
     Returns:
         Integer indicating total amount of rainwater retained.
     """
@@ -18,7 +18,7 @@ def rain(walls):
     total_water = 0
     n = len(walls)
 
-    # Initialize left and right arrays to store maximum heights to the left and right of each wall
+    # Initialize left and right arrays
     left_max = [0] * n
     right_max = [0] * n
 
