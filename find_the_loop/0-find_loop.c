@@ -1,5 +1,4 @@
 #include "lists.h"
-
 /**
  * find_listint_loop - Finds the loop in a linked list.
  * @head: Pointer to the head of the list
