@@ -1,6 +1,5 @@
 #ifndef _SORT_H
 #define _SORT_H
-#define MAX 100
 #include <stdlib.h>
 #include <stdio.h>
 
