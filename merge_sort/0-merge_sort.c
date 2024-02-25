@@ -61,24 +61,12 @@ void merge(int *array, size_t left, size_t mid, size_t right)
 
 void merge_sort(int *array, size_t size)
 {
-    size_t left, mid, right;
-
     if (size < 2)
         return;
 
-    left = 0;
-    mid = size / 2;
-    right = size - 1;
+    size_t mid = size / 2;
 
-    printf("Merging...\n");
-    printf("[left]: ");
-    print_array(array, mid - left + 1);
-    printf("[right]: ");
-    print_array(array + mid + 1, right - mid);
-
-    merge(array, left, mid, right);
-
-    printf("[Done]: ");
-    print_array(array, size);
-    printf("\n");
+    merge_sort(array, mid);
+    merge_sort(array + mid, size - mid);
+    merge(array, 0, mid - 1, size - 1);
 }
