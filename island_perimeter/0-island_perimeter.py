@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def island_perimeter(grid):
     def dfs(x, y):
         if x < 0 or y < 0 or x >= len(grid) or y >= len(grid[0]):
